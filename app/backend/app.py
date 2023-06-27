@@ -11,6 +11,7 @@ from approaches.retrievethenread import RetrieveThenReadApproach
 from approaches.readretrieveread import ReadRetrieveReadApproach
 from approaches.readdecomposeask import ReadDecomposeAsk
 from approaches.chatreadretrieveread import ChatReadRetrieveReadApproach
+from approaches.chatreadretrieveread_faiss import ChatReadRetrieveReadApproachFAISS
 from azure.storage.blob import BlobServiceClient
 
 # Replace these with your own values, either in environment variables or directly here
@@ -61,7 +62,8 @@ ask_approaches = {
 }
 
 chat_approaches = {
-    "rrr": ChatReadRetrieveReadApproach(search_client, AZURE_OPENAI_CHATGPT_DEPLOYMENT, AZURE_OPENAI_GPT_DEPLOYMENT, KB_FIELDS_SOURCEPAGE, KB_FIELDS_CONTENT)
+    "rrr": ChatReadRetrieveReadApproach(search_client, AZURE_OPENAI_CHATGPT_DEPLOYMENT, AZURE_OPENAI_GPT_DEPLOYMENT, KB_FIELDS_SOURCEPAGE, KB_FIELDS_CONTENT),
+    "rrf": ChatReadRetrieveReadApproachFAISS("gpt-35-turbo", blob_client)
 }
 
 app = Flask(__name__)

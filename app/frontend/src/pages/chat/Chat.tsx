@@ -46,7 +46,8 @@ const Chat = () => {
             const history: ChatTurn[] = answers.map(a => ({ user: a[0], bot: a[1].answer }));
             const request: ChatRequest = {
                 history: [...history, { user: question, bot: undefined }],
-                approach: Approaches.ReadRetrieveRead,
+                //approach: Approaches.ReadRetrieveRead,
+                approach: Approaches.ReadRetrieveReadFAISS,
                 overrides: {
                     promptTemplate: promptTemplate.length === 0 ? undefined : promptTemplate,
                     excludeCategory: excludeCategory.length === 0 ? undefined : excludeCategory,
@@ -134,9 +135,9 @@ const Chat = () => {
                 <div className={styles.chatContainer}>
                     {!lastQuestionRef.current ? (
                         <div className={styles.chatEmptyState}>
-                            <SparkleFilled fontSize={"120px"} primaryFill={"rgba(115, 118, 225, 1)"} aria-hidden="true" aria-label="Chat logo" />
-                            <h1 className={styles.chatEmptyStateTitle}>Chat with your data</h1>
-                            <h2 className={styles.chatEmptyStateSubtitle}>Ask anything or try an example</h2>
+                            <img src="https://tiinside.com.br/wp-content/uploads/2023/02/Vibra-logo.png" alt="" width="30%" height="auto" />
+                            <h2 className={styles.chatEmptyStateTitle}>Converse com a Vibra</h2>
+                            <h3 className={styles.chatEmptyStateSubtitle}>Pergunte sobre os relatórios de RI</h3>
                             <ExampleList onExampleClicked={onExampleClicked} />
                         </div>
                     ) : (
@@ -181,7 +182,7 @@ const Chat = () => {
                     <div className={styles.chatInput}>
                         <QuestionInput
                             clearOnSend
-                            placeholder="Type a new question (e.g. does my plan cover annual eye exams?)"
+                            placeholder="Digite um pergunta (Ex.: Qual o EBITIDA do B2B no 4t22?)"
                             disabled={isLoading}
                             onSend={question => makeApiRequest(question)}
                         />
