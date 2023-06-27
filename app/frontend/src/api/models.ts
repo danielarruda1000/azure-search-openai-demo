@@ -1,7 +1,8 @@
 export const enum Approaches {
     RetrieveThenRead = "rtr",
     ReadRetrieveRead = "rrr",
-    ReadDecomposeAsk = "rda"
+    ReadDecomposeAsk = "rda",
+    ReadRetrieveReadFAISS = "rrf"
 }
 
 export type AskRequestOverrides = {
